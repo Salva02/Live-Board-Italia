@@ -1,0 +1,349 @@
+:root {
+  --board-bg: #000000;
+  --text-color: #ffd800;
+  --border-color: #333333;
+  --trenitalia-blue: #003366;
+  --trenitalia-light-blue: #005798;
+  --trenitalia-gray: #4c4c4c;
+  --trenitalia-light-gray: #f2f2f2;
+  --main-font: Futura, 'Trebuchet MS', Arial, sans-serif;
+}
+
+.departure-board {
+  background-color: var(--board-bg);
+  color: var(--text-color);
+  font-family: var(--main-font), monospace;
+  padding: 15px;
+  margin: 50px auto;
+  border: 2px solid var(--border-color);
+  width: 600px;
+  height: 200px;
+  position: relative;
+}
+
+.train-info {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.train-entry {
+  display: grid;
+  grid-template-columns: 100px 1fr; /* Back to 2 columns */
+  gap: 10px;
+  height: calc(100% - 10px);
+  margin: 5px;
+  margin-top: 15px;
+  position: relative;
+}
+
+.provider-box {
+  background-color: var(--board-bg);
+  border: 1px solid var(--text-color);
+  padding: 8px;
+  text-align: center;
+  grid-row: 1 / span 2;
+  height: 86px;
+  z-index: 1;
+  position: relative;
+  width: 85px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.provider {
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+.train-type {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.train-number {
+  font-size: 1em;
+  margin-left: 10px;
+  margin: 0;
+}
+
+.destination-bar, .time-bar {
+  background-color: var(--board-bg);
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  margin: 1px 0;
+  font-size: 1.3em;
+  width: 300px;
+  height: 25px;
+}
+
+/* Update the stops-bar to handle overflow properly */
+.stops-bar {
+  background-color: var(--board-bg);
+  border: 1px solid var(--border-color);
+  padding: 0 10px;
+  font-size: 1.1em;
+  color: var(--text-color);
+  grid-column: 1 / 3;
+  z-index: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 540px;
+  height: 25px;
+  line-height: 25px;
+  margin-left: 0;
+  position: relative;  /* Changed from absolute */
+  bottom: 0;
+  left: 0;
+}
+
+.stops-bar span {
+  position: absolute;
+  white-space: nowrap;
+  animation: scroll-left 12s linear infinite; /* Increased from 5s to 12s */
+  padding: 0 10px;
+  line-height: 25px;
+  left: 0;
+}
+
+/* Add this new class for the train info container */
+.train-info-bottom {
+  margin-top: auto;
+  padding-bottom: 5px;
+}
+
+.section-label {
+  color: white;
+  font-size: 0.8em;
+  margin-bottom: 5px; /* Increased spacing below labels */
+  text-align: left;
+  font-family: var(--main-font);
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-container:nth-child(2) {
+  width: 450px; /* Set width for the middle container */
+}
+
+/* Add specific styling for the Informazioni label */
+.info-container:last-child .section-label {
+  position: absolute;
+  bottom: 35px; /* Push up the label above the stops bar */
+  left: 0;
+  z-index: 1;
+}
+
+/* Animazione per simulare il display LED */
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.platform-number {
+  position: absolute;
+  top: 30px;
+  right: 60px;
+  color: white;
+  font-size: 2.8em; /* Reduced from 3.5em */
+  font-weight: bold;
+  font-family: 'LED', 'Courier New', monospace;
+  text-align: center; /* Changed from left to center */
+  width: 65px; /* Added width to match clock width */
+  font-family: var(--main-font), monospace;
+}
+
+.section-label[for="platform"] {
+  position: absolute;
+  top: 10px;
+  right: 60px;
+  color: white;
+  width: 65px; /* Added width to match platform number */
+  text-align: center; /* Center align like platform number */
+}
+
+.clock {
+  position: absolute;
+  top: 85px;
+  right: 60px; /* Increased from 45px to align with platform number */
+  width: 65px;
+  height: 65px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: white;
+}
+
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom;
+  background: black;
+  border-radius: 4px;
+}
+
+.hour {
+  width: 2px;
+  height: 18px;
+  transform: translateX(-50%);
+}
+
+.minute {
+  width: 1.5px;
+  height: 22px;
+  transform: translateX(-50%);
+}
+
+.control-panel {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 25px;
+  background: var(--trenitalia-light-gray);
+  border-radius: 0;
+  font-family: var(--main-font);
+  color: var(--trenitalia-gray);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--trenitalia-blue);
+  font-size: 14px;
+  text-transform: uppercase;
+  font-family: var(--main-font);
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dedede;
+  border-radius: 0;
+  font-family: var(--main-font);
+  color: var(--trenitalia-gray);
+  background-color: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--trenitalia-light-blue);
+  box-shadow: 0 0 0 2px rgba(0, 87, 152, 0.1);
+}
+
+.train-inputs {
+  display: flex;
+  gap: 40px; /* Increased from 20px */
+  align-items: flex-start; /* Changed from flex-end to align labels */
+}
+
+.train-type-container,
+.train-number-container {
+  flex: 1;
+}
+
+#train-type {
+  width: 100px;
+}
+
+#train-number {
+  width: 120px;
+}
+
+button[type="submit"] {
+  background: var(--trenitalia-blue);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+  background: var(--trenitalia-light-blue);
+}
+
+#reset-board {
+  background: white;
+  color: var(--trenitalia-blue);
+  padding: 12px 24px;
+  border: 2px solid var(--trenitalia-blue);
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+#reset-board:hover {
+  background: var(--trenitalia-blue);
+  color: white;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+body {
+  background-color: white;
+  font-family: var(--main-font);
+  margin: 0;
+  padding: 20px;
+}
+
+.page-header {
+  text-align: center;
+  margin: 30px 0;
+  font-family: var(--main-font);
+  color: var(--trenitalia-blue);
+}
+
+.page-header h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  color: var(--trenitalia-gray);
+  font-family: var(--main-font);
+  font-size: 14px;
+  border-top: 1px solid #dedede;
+}
+
+.disclaimer {
+  max-width: 800px;
+  margin: 20px auto 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--trenitalia-gray);
+}

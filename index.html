@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabellone Partenze</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="page-header">
+        <h1>Live Board Departure Italia</h1>
+    </header>
+
+    <div class="departure-board">
+        <span class="section-label" for="platform">Binario</span>
+        <div class="platform-number">-</div>
+        <div class="clock">
+            <div class="hand hour"></div>
+            <div class="hand minute"></div>
+            <div class="hand second"></div>
+            <div class="marks"></div>
+        </div>
+        <div class="train-entry">
+            <div class="info-container">
+                <span class="section-label">Treno / train</span>
+                <div class="provider-box">
+                    <span class="provider">--</span>
+                    <div class="train-info-bottom">
+                        <span class="train-type">--</span>
+                        <span class="train-number">----</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-container">
+                <span class="section-label">Destinazione / destination</span>
+                <div class="destination-bar">
+                    --------
+                </div>
+                
+                <span class="section-label">Orario / time</span>
+                <div class="time-bar">
+                    --:--
+                </div>
+            </div>
+            
+            <div class="info-container">
+                <span class="section-label">Informazioni / information</span>
+                <div class="stops-bar">
+                    <span>------------------</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="control-panel">
+        <form id="train-form">
+            <div class="form-group">
+                <label for="platform">Binario:</label>
+                <input type="number" id="platform" min="1" max="99">
+            </div>
+            
+            <div class="form-group">
+                <label for="provider">Operatore:</label>
+                <select id="provider">
+                    <option value="Trenord">Trenord</option>
+                    <option value="Trenitalia">Trenitalia</option>
+                    <option value="Italo">Italo</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <div class="train-inputs">
+                    <div class="train-type-container">
+                        <label for="train-type">Tipo Treno:</label>
+                        <select id="train-type">
+                            <option value="REG">Reg</option>
+                            <option value="RV">RV</option>
+                            <option value="RE">RE</option>
+                            <option value="AV">AV</option>
+                            <option value="IC">IC</option>
+                            <option value="EC">EC</option>
+                            <option value="ES*">ES*</option>
+                        </select>
+                    </div>
+                    <div class="train-number-container">
+                        <label for="train-number">Numero Treno:</label>
+                        <input type="number" 
+                               id="train-number" 
+                               min="1" 
+                               max="99999" 
+                               pattern="\d{1,5}"
+                               oninput="javascript: if (this.value.length > 5) this.value = this.value.slice(0,5)">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="destination">Destinazione:</label>
+                <input type="text" id="destination">
+            </div>
+            
+            <div class="form-group">
+                <label for="time">Orario:</label>
+                <input type="time" id="time">
+            </div>
+            
+            <div class="form-group">
+                <label for="stops">Fermate:</label>
+                <input type="text" id="stops" placeholder="Inserisci le fermate separate da -">
+            </div>
+            
+            <div class="form-buttons">
+                <button type="submit">Aggiorna Tabellone</button>
+                <button type="button" id="reset-board">Reset Tabellone</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/clock.js"></script>
+    <script src="js/board.js"></script>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Live Departure Board. All rights reserved.</p>
+        <p class="disclaimer">
+            Disclaimer: Questo tabellone è una simulazione a scopo ricreativo e non deve essere utilizzato come fonte ufficiale 
+            per gli orari dei treni. Per informazioni accurate e aggiornate, si prega di consultare i siti ufficiali delle 
+            compagnie ferroviarie (Trenitalia, Italo, Trenord).
+        </p>
+        <a href="help.html" class="help-link">Scopri il funzionamento →</a>
+    </footer>
+</body>
+</html>
